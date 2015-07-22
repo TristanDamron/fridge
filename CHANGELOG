@@ -1,0 +1,37 @@
+++ (Enhancements)
+-- (Removals)
+?? (Broken)
+
+v.01 July 21 2015
+
+ ++Fridge class created
+ ++Fields @8>>11
+    ++update
+    ++queue
+    ++packages
+    ++in
+ ++printMenu() basic gui for navigation @67>>80
+ ++command loop @13>>65
+    ++[q-quit] 
+    ++[f-select]
+    ++[j-deselect]
+    ++[r-install]
+    ??[c-clear]
+ ++download/unpack packages using wget @96>>222
+    ++download()
+    ++configure()
+    ++wget()
+    ??install()
+    ??make()
+    ++mv()
+    ++unpack()
+ ++getPackages() pulls data from local update file @246>>272
+ ++printPackages() prints package names and sizes in the gui @274>>288
+ ++Package class created
+ ++Fields @3>>6
+    ++name
+    ++file_name
+    ++size_in_megabytes
+    ++url
+ ++getters @17>>38
+
