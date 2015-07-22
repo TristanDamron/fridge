@@ -8,7 +8,7 @@ public class Fridge {
     File update;
     ArrayList<Package> queue = new ArrayList<>();
     Package[][] packages = new Package[2][5];
-    Scanner in;
+    Scanner in;    
 
     public Fridge() {
 
@@ -50,13 +50,31 @@ public class Fridge {
 	    } else if (input.equals("c")) {
 		try {
 
-		    clear();
+		    //clear();
 
 		} catch (Exception e) {
 
 		    e.printStackTrace();
 
 		}
+
+	    } else if (input.equals("h")) {
+
+		System.out.println("Fridge is a package handler where you can install and remove packages from your computer without having to use wget, make, rm, or other programs that are usually required for a package to build or be removed properly.\nItems highlighted in green are packages that are currently installed in your Fridge's source directory, while items in red have yet to be installed.\nYour current version is 0.2. ");
+
+	    } else if (input.equals("u")) {
+
+		try {
+		
+		    System.out.println("Please enter the package you want to remove: ");
+		    remove(find(in.next()));
+		
+		} catch (Exception e) {
+
+		    e.printStackTrace();
+
+		}
+		       
 
 	    }
 
@@ -74,7 +92,7 @@ public class Fridge {
 	printPackages();
 	
 	System.out.println("----------------------------------------------------------------------------------");
-	System.out.println(" [q-quit]  [f-select] [j-deselect] [r-install selected] [h-help] [d-description] [c-clear]");
+	System.out.println(" [q-quit]  [f-select] [j-deselect] [r-install selected] [h-help] [u-remove] [c-clear]");
 
 
     }
@@ -116,6 +134,23 @@ public class Fridge {
 
     }
 
+    private void remove(Package p) throws IOException {
+
+	try {
+	
+	    ProcessBuilder rm = new ProcessBuilder("rm", "-r", p.getName());
+	    rm.directory(new File("srcs/"));
+	    Process rm_process = rm.start();
+	    rm_process.waitFor();
+
+	} catch (Exception e) {
+
+	    e.printStackTrace();
+
+	}
+
+    }
+
     private void configure(int i) throws IOException {
 	
 	try {
@@ -133,9 +168,19 @@ public class Fridge {
     }
 
     private void clear() throws IOException {
+	
+	try {
 
-	Runtime.getRuntime().exec("clear");
-	printMenu();
+	    ProcessBuilder clear = new ProcessBuilder("clear");
+	    Process clear_process = clear.start();
+	    clear_process.waitFor();
+	    printMenu();
+
+	} catch (Exception e) {
+
+	    e.printStackTrace();
+
+	}
 
     }
 
